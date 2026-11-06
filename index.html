@@ -7,59 +7,81 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#ffffff;--ink:#1d2230;--ink2:#555a66;--line:#d4d2cc}
+:root{--paper:#fff;--ink:#1c1c1e;--ink2:#6b6b70;--line:#e6e3de;--accent:#ec6a2c;--fill:#f4f2ee}
 *{box-sizing:border-box}
-body{margin:0;color:var(--ink);font:16px/1.9 'Shippori Mincho',serif;background:var(--paper)}
-h1,h2,h3{font-weight:600;letter-spacing:.04em}
+body{margin:0;color:var(--ink);font:16px/1.8 'Shippori Mincho',serif;background:var(--paper)}
+h1,h2,h3{font-weight:600;margin:0}
 a{color:inherit}
-header{display:flex;align-items:center;gap:14px;padding:14px 5vw;border-bottom:1px solid var(--ink);flex-wrap:wrap}
-header .logo{font-size:24px;font-weight:600;letter-spacing:.12em;text-decoration:none;margin-right:auto}
-header a,header button{font:inherit;font-size:15px}
-main{max-width:920px;margin:0 auto;padding:24px 5vw 130px}
-h2{font-size:22px;margin:0 0 6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
-button,.btn{font:inherit;cursor:pointer;color:var(--ink);background:none;border:1px solid var(--ink);padding:5px 16px;border-radius:0;text-decoration:none;display:inline-block}
-button:hover,.btn:hover{background:var(--ink);color:var(--paper)}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:34px 28px;margin-top:22px}
-.card{display:block;text-decoration:none;border-top:1px solid var(--ink);padding-top:10px}
-.card .ph{aspect-ratio:4/3;overflow:hidden;display:grid;place-items:center;color:var(--ink2);border:1px solid var(--line)}
-.card img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply}
-.card h3{margin:10px 0 0;font-size:18px;line-height:1.5}
-.meta{margin:2px 0 0;font-size:13.5px;color:var(--ink2)}
-.empty{margin:50px 0;text-align:center;color:var(--ink2)}
-label{display:block;margin:16px 0 4px;font-size:14px;color:var(--ink2)}
-input,select,textarea{width:100%;font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:6px 2px}
-textarea{min-height:90px;border:1px solid var(--ink);padding:8px 10px}
-input[type=file]{border:0;font-size:14px}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--paper)}
+#q{flex:1;min-width:0;border:0;background:var(--fill);border-radius:999px;padding:10px 18px;font-size:15px}
+#q[hidden],#fab[hidden]{display:none}
+#auth .btn{background:var(--ink);color:#fff;border-color:var(--ink);white-space:nowrap}
+main{max-width:720px;margin:0 auto;padding:8px 16px 130px}
+main.full{max-width:600px;padding:0 0 60px}
+h2{font-size:20px;margin:12px 0}
+button,.btn{font:inherit;font-size:14px;cursor:pointer;color:var(--ink);background:none;border:1px solid var(--ink);padding:7px 18px;border-radius:999px;text-decoration:none;display:inline-block}
+button:hover,.btn:hover{background:var(--ink);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:8px}
+.card{position:relative;display:block;aspect-ratio:3/2;border-radius:18px;overflow:hidden;background:#77736e;color:#fff;text-decoration:none}
+.card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.av{position:absolute;top:14px;left:14px;width:46px;height:46px;border-radius:50%;background:#e8e5e0;color:var(--ink);display:grid;place-items:center;font-weight:600}
+.ov{position:absolute;left:0;right:0;bottom:0;padding:56px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.72));display:flex;gap:12px;align-items:flex-end}
+.ov .l{flex:1;min-width:0}
+.d1{font-size:13px;opacity:.9;line-height:1.5}
+.ov h3{font-size:18px;line-height:1.45;margin-top:2px}
+.st{flex:none;max-width:46%;display:flex;align-items:center;gap:10px;font-size:13px;padding-bottom:3px}
+.st span{display:flex;align-items:center;gap:3px;min-width:0}
+.st .pl{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;display:block}
+.st svg{width:15px;height:15px;flex:none;fill:currentColor}
+.empty{margin:60px 0;text-align:center;color:var(--ink2)}
+label{display:block;margin:16px 0 4px;font-size:13px;color:var(--ink2)}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--fill);border:0;border-radius:10px;padding:10px 12px}
+textarea{min-height:90px}
+input[type=file]{padding:8px;font-size:14px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.ent{border:1px solid var(--line);padding:6px 14px 14px;margin:18px 0}
+.ent{background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:4px 14px 14px;margin:16px 0}
 .hint{font-size:13px;color:var(--ink2);margin:4px 0}
 .login{max-width:420px;margin:40px auto;text-align:center}
-.hero{text-align:center;margin:10px 0 40px}
-.hero h1{font-size:clamp(28px,6vw,44px);line-height:1.4;margin:0 0 8px}
-.facts{display:flex;gap:6px 22px;justify-content:center;flex-wrap:wrap;color:var(--ink2);font-size:15px}
-.tl{position:relative;margin-top:30px}
-.tl svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-.tl path{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;opacity:.85}
-.ev{position:relative;width:min(100%,560px);margin:0 0 56px;padding-top:6px}
-.ev.r{margin-left:auto}
-.ev .dot{position:absolute;top:2px;width:12px;height:12px;border-radius:50%;background:var(--ink)}
-.ev.l .dot{left:-6px}.ev.r .dot{right:-6px}
-.ev .t{font-size:18px;font-weight:600;margin:0 0 6px 22px}
-.ev.r .t{margin:0 22px 6px 0;text-align:right}
-.ev img{display:block;width:100%;border:1px solid var(--ink);mix-blend-mode:multiply}
-.ev p{margin:12px 22px;white-space:pre-wrap}
-.bar{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
-@media(max-width:560px){.row{grid-template-columns:1fr}.ev{width:88%}}
-@media(prefers-reduced-motion:no-preference){.tl path{animation:draw 1.6s ease-out both}@keyframes draw{from{stroke-dasharray:3000;stroke-dashoffset:3000}to{stroke-dasharray:3000;stroke-dashoffset:0}}}
-header{position:sticky;top:0;background:var(--paper);z-index:5}
-#q{flex:1;min-width:0;border:1px solid var(--ink);padding:6px 12px}
-#auth{margin-left:auto}
-#tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);background:var(--paper);border-top:1px solid var(--ink);padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
-#tabs a{text-align:center;padding:14px 4px;text-decoration:none;font-size:15px;border-top:3px solid transparent;margin-top:-1px}
-#tabs a.on{font-weight:600;border-top-color:var(--ink)}
-#fab{position:fixed;right:18px;bottom:calc(70px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:32px;line-height:1;text-decoration:none;z-index:6}
-#fab[hidden],#q[hidden]{display:none}
+#tabs{position:fixed;left:0;right:0;bottom:0;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+#tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 4px 8px;text-decoration:none;font-size:11px;color:#8a8a8e}
+#tabs a.on{color:var(--ink);font-weight:600}
+#tabs svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#fab{position:fixed;right:18px;bottom:calc(76px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:34px;font-weight:400;line-height:1;text-decoration:none;z-index:6;box-shadow:0 6px 16px rgba(236,106,44,.45)}
+.det header,.det #tabs{display:none}
+/* 詳細 */
+.closew{position:sticky;top:12px;height:0;z-index:20;text-align:right;padding-right:14px}
+.cl{width:40px;height:40px;padding:0;border-radius:50%;background:var(--ink);color:#fff;border:0;font-size:18px;line-height:1;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.cl:hover{background:#3a3a3c}
+.hero{padding:64px 22px 22px}
+.hero h1{font-size:28px;line-height:1.4}
+.facts{display:flex;gap:2px 14px;flex-wrap:wrap;margin-top:8px;color:var(--ink2);font-size:14px}
+.tl{position:relative}
+.tl svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:0}
+.tl path{fill:none;stroke:#8e8e93;stroke-width:1.2;stroke-linecap:round}
+.ev{position:relative;z-index:1;margin-bottom:30px}
+.ev img.p{display:block;width:76%}
+.ev.l img.p{margin-right:auto}.ev.r img.p{margin-left:auto}
+.tx{display:flex;align-items:flex-start;gap:12px;padding:20px 22px 6px 0}.tb{min-width:0;flex:1}
+.ev.l .tx{margin-left:36%}.ev.r .tx{margin-left:14%}
+.dot{flex:none;margin-top:10px;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;display:grid;place-items:center}
+.dot::after{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink)}
+.t{font-size:22px;font-weight:600;line-height:1.5}
+.tx p{margin:6px 0 0;white-space:pre-wrap}.nt .dot{margin-top:8px}.nt p{margin-top:0}
+.bar{display:flex;gap:10px;flex-wrap:wrap;padding:0 22px;margin-top:10px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:no-preference){.tl path{animation:draw 1.8s ease-out both}@keyframes draw{from{stroke-dasharray:4000;stroke-dashoffset:4000}to{stroke-dasharray:4000;stroke-dashoffset:0}}}
+.start{text-align:center;margin:90px 0}.start p{color:var(--ink2)}
+.big{font-size:17px;padding:12px 32px;background:var(--ink);color:#fff}
+.it{display:flex;gap:14px;margin:20px 0;align-items:flex-start}
+.it img{width:42%;max-width:180px;aspect-ratio:3/4;object-fit:cover;border-radius:6px;flex:none}
+.ib{flex:1;min-width:0}.ib .t{font-size:22px;font-weight:600;line-height:1.5}
+.dd{font-size:13px;color:var(--ink2);line-height:1.5}
+.ib textarea{margin-top:8px}
+.sm{font-size:13px;padding:3px 12px;margin:8px 8px 0 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-size:13px;padding:1px 12px;border:0;background:var(--fill);color:var(--ink)}
+.vp{margin:14px 22px;padding:2px 16px 16px;background:#faf9f6;border:1px solid var(--line);border-radius:14px}
 </style>
 </head>
 <body>
@@ -70,12 +92,13 @@ header{position:sticky;top:0;background:var(--paper);z-index:5}
 <main id="app"></main>
 <a id="fab" href="#new" aria-label="新しい記録を書く" hidden>+</a>
 <nav id="tabs">
-  <a href="#discover" data-t="discover">みんなの記録</a>
-  <a href="#home" data-t="home">My記録</a>
-  <a href="#account" data-t="account">アカウント</a>
+  <a href="#discover" data-t="discover"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>みんなの記録</a>
+  <a href="#home" data-t="home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/></svg>My記録</a>
+  <a href="#account" data-t="account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>アカウント</a>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
 <script>
 // ===== 設定(anon key は公開してOK。service_role キーは絶対に入れない) =====
 const SUPABASE_URL = 'https://hqbbgasivyggbkwxujmf.supabase.co';
@@ -109,24 +132,29 @@ function renderAuth(){
 }
 sb.auth.onAuthStateChange((_e, s) => { user = s?.user ?? null; renderAuth(); route(); });
 
+const PIN = '<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
+const BM = '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
 const card = r => {
-  const img = r.cover_path ? `<img src="${esc(pub(r.cover_path))}" alt="" loading="lazy">` : '写真なし';
-  const sub = r.kind === 'hike' ? [r.mountain, r.elevation && r.elevation + 'm'] : [r.place];
-  return `<a class="card" href="#r/${r.id}"><div class="ph">${img}</div><h3>${esc(r.title)}</h3>
-  <div class="meta">${esc(r.visit_date || '')} ${esc(sub.filter(Boolean).join(' '))}</div>
-  <div class="meta">♥ ${r.favorites?.[0]?.count ?? 0}${r.profiles?.name ? '　' + esc(r.profiles.name) : ''}</div></a>`;
+  const place = r.place;
+  const nm = r.profiles?.name;
+  return `<a class="card" href="#r/${r.id}">${r.cover_path ? `<img src="${esc(pub(r.cover_path))}" alt="" loading="lazy">` : ''}
+  ${nm ? `<span class="av">${esc([...nm][0].toUpperCase())}</span>` : ''}
+  <div class="ov"><div class="l"><div class="d1">${esc((r.visit_date || '').replace(/-/g, '.'))}</div><h3>${esc(r.title)}</h3></div>
+  <div class="st">${place ? `<span>${PIN}<span class="pl">${esc(place)}</span></span>` : ''}<span>${BM}${r.favorites?.[0]?.count ?? 0}</span></div></div></a>`;
 };
 const SEL = '*, favorites(count), profiles(name)';
 
 let q = '';
-const qs = x => x.replace(/[,()%*\\_]/g, ' ').trim();
-const withSearch = b => { const t = qs(q); return t ? b.or(`title.ilike.%${t}%,place.ilike.%${t}%,mountain.ilike.%${t}%`) : b; };
+const qs = x => x.replace(/[,(){}%*"\\_]/g, ' ').trim();
+const withSearch = b => { const t = qs(q); if (!t) return b;
+  if (t[0] === '#') { const g = t.slice(1).trim().toLowerCase(); return g ? b.contains('tags', [g]) : b; }
+  return b.or(`title.ilike.%${t}%,place.ilike.%${t}%` + (/\s/.test(t) ? '' : `,tags.cs.{${t.toLowerCase()}}`)); };
 const listHtml = (data, empty) => data?.length ? `<div class="grid">${data.map(card).join('')}</div>` : `<div class="empty">${q.trim() ? '見つかりませんでした。' : empty}</div>`;
 
 async function home(){
   if (!user) { app.innerHTML = `<div class="empty"><p style="font-size:20px">記録を書くにはログインが必要です</p><p><a class="btn" href="#login">ログイン</a></p></div>`; return; }
   const {data} = await withSearch(sb.from('records').select(SEL).eq('user_id', user.id)).order('created_at', {ascending:false});
-  app.innerHTML = `<h2>My記録</h2>` + listHtml(data, 'まだ記録がありません。右下の + から最初の旅を書いてみましょう。');
+  app.innerHTML = listHtml(data, 'まだ記録がありません。右下の + から最初の旅を書いてみましょう。');
 }
 function account(){
   if (!user) return loginView();
@@ -135,7 +163,7 @@ function account(){
 }
 async function discover(){
   const {data} = await withSearch(sb.from('records').select(SEL).eq('visibility','public')).order('created_at', {ascending:false}).limit(60);
-  app.innerHTML = `<h2>みんなの記録</h2>` + listHtml(data, '公開された記録はまだありません。');
+  app.innerHTML = listHtml(data, '公開された記録はまだありません。');
 }
 function loginView(){
   app.innerHTML = `<div class="login"><h2>メールアドレスでログイン</h2>
@@ -162,57 +190,95 @@ function cleanImage(file){
   });
 }
 
-function newView(){
+const p2 = n => String(n).padStart(2, '0');
+const readTime = async f => {
+  try { const x = await exifr.parse(f, ['DateTimeOriginal', 'CreateDate']); const d = x?.DateTimeOriginal || x?.CreateDate;
+    if (d instanceof Date && !isNaN(d)) return d; } catch (e) {}
+  return null;
+};
+const fmt = d => d ? {date:`${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}`, time:`${p2(d.getHours())}:${p2(d.getMinutes())}`} : {date:null, time:null};
+const sortItems = arr => arr.map((x, i) => [x, i]).sort(([a, i], [b, j]) => {
+  if (a.date && b.date) { const x = a.date + ' ' + a.time, y = b.date + ' ' + b.time; return x < y ? -1 : x > y ? 1 : i - j; }
+  return a.date ? -1 : b.date ? 1 : i - j; }).map(x => x[0]);
+const visHtml = r => `<label>公開範囲</label><select id="vis">${['private','link','public'].map(v => `<option value="${v}"${(r?.visibility || 'private') === v ? ' selected' : ''}>${{private:'非公開(自分だけ)', link:'URL限定', public:'全体公開(みんなの記録に載る)'}[v]}</option>`).join('')}</select>
+  <div id="tagw"><label>ハッシュタグ(公開時に使われます。スペース区切り)</label><input id="tags" placeholder="#山中湖 #ハイク" value="${esc((r?.tags || []).map(t => '#' + t).join(' '))}"></div>`;
+const bindVis = () => { const f = () => { document.getElementById('tagw').hidden = document.getElementById('vis').value !== 'public'; }; document.getElementById('vis').onchange = f; f(); };
+const readTags = () => [...new Set((document.getElementById('tags').value.match(/[^\s#,、]+/g) || []).map(t => t.slice(0, 30).toLowerCase()))].slice(0, 10);
+
+function newView(){ editor(null); }
+async function editRoute(id){
   if (!user) { location.hash = '#login'; return; }
-  app.innerHTML = `<h2>新しい記録</h2>
-  <label>種類</label><select id="kind"><option value="trip">旅行</option><option value="hike">登山</option></select>
-  <label>タイトル</label><input id="title" maxlength="80">
-  <div class="row"><div><label>日付</label><input id="date" type="date"></div><div><label id="plabel">旅行先</label><input id="place"></div></div>
-  <div id="hikeF" hidden><div class="row"><div><label>標高(m)</label><input id="elev" type="number" min="0"></div><div><label>所要時間</label><input id="dur" placeholder="例: 5時間30分"></div></div>
-  <label>登山コース</label><input id="course"></div>
-  <h3 style="margin-top:30px">出来事</h3><div id="ents"></div>
-  <button id="add" type="button">+ 出来事を追加</button>
-  <label>公開範囲</label><select id="vis"><option value="private">非公開(自分だけ)</option><option value="link">URL限定</option><option value="public">全体公開(みんなの記録に載る)</option></select>
-  <p class="hint">写真は保存前に位置情報を取り除きます。</p>
-  <p><button id="save">保存する</button></p>`;
+  const {data} = await sb.from('records').select('*, entries(*)').eq('id', id).eq('user_id', user.id).maybeSingle();
+  if (!data) return app.innerHTML = '<div class="empty">記録が見つかりません。</div>';
+  editor(data);
+}
+function editor(rec){
+  if (!user) { location.hash = '#login'; return; }
   const $ = id => document.getElementById(id);
-  const addEnt = () => { const d = document.createElement('div'); d.className = 'ent';
-    d.innerHTML = `<label>時刻</label><input class="tm" placeholder="例: 06:30">
-    <label>写真</label><input class="ph" type="file" accept="image/*">
-    <label>文章</label><textarea class="bd"></textarea><button type="button" class="rm">この出来事を削除</button>`;
-    d.querySelector('.rm').onclick = () => d.remove(); $('ents').appendChild(d); };
-  addEnt(); $('add').onclick = addEnt;
-  $('kind').onchange = () => { const h = $('kind').value === 'hike'; $('hikeF').hidden = !h; $('plabel').textContent = h ? '山の名前' : '旅行先'; };
-  $('save').onclick = async () => {
-    if (!$('title').value.trim()) return alert('タイトルを入力してください');
+  let items = rec ? [...rec.entries].sort((a, b) => a.position - b.position).map(e => ({path:e.photo_path, url:pub(e.photo_path), date:e.taken_date, time:e.time_label, caption:e.body || '', open:!!e.body})) : [];
+  const picker = document.createElement('input'); picker.type = 'file'; picker.accept = 'image/*'; picker.multiple = true;
+  picker.onchange = () => { if (picker.files.length) addFiles([...picker.files]); picker.value = ''; };
+  const addFiles = async files => {
+    const add = await Promise.all(files.map(async f => { const {date, time} = fmt(await readTime(f)); return {file:f, url:URL.createObjectURL(f), date, time, caption:'', open:false}; }));
+    items = sortItems([...items, ...add]);
+    if ($('list')) drawList(); else build();
+  };
+  const drawList = () => { let pd = null; $('list').innerHTML = items.map((it, i) => { const sd = it.date && it.date !== pd; if (it.date) pd = it.date;
+    return `<div class="it"><img src="${esc(it.url)}" alt=""><div class="ib">${sd ? `<div class="dd">${esc(it.date.replace(/-/g, '.'))}</div>` : ''}<div class="t">${esc(it.time || '時刻なし')}</div>
+    ${it.open ? `<textarea data-i="${i}" placeholder="キャプション">${esc(it.caption)}</textarea>` : `<button type="button" class="sm" data-cap="${i}">キャプションを追加</button>`}
+    <button type="button" class="sm" data-rm="${i}">この写真を削除</button></div></div>`; }).join(''); };
+  const start = () => { app.innerHTML = `<div class="start"><h2>写真を選びましょう</h2><p>まとめて選ぶと、撮影した時刻の順に自動で並びます。</p><p><button class="big" id="pick">写真を選ぶ</button></p></div>`; $('pick').onclick = () => picker.click(); };
+  const build = () => {
+    app.innerHTML = `<h2>${rec ? '記録を編集' : '新しい記録'}</h2><div id="list"></div>
+    <p><button id="more" type="button">+ 写真を追加</button></p>
+    <label>タイトル</label><input id="title" maxlength="80" value="${esc(rec?.title)}">
+    <label>場所(任意)</label><input id="place" value="${esc(rec?.place)}">
+    ${rec ? '' : visHtml(null)}
+    <p class="hint">写真は保存前に位置情報を取り除きます。</p>
+    <p><button id="save" class="big">保存する</button></p>`;
+    drawList(); $('more').onclick = () => picker.click(); if (!rec) bindVis();
+    $('list').onclick = e => { const c = e.target.closest('[data-cap]'), r = e.target.closest('[data-rm]');
+      if (c) { items[+c.dataset.cap].open = true; drawList(); $('list').querySelector(`textarea[data-i="${c.dataset.cap}"]`).focus(); }
+      if (r) { items.splice(+r.dataset.rm, 1); drawList(); } };
+    $('list').oninput = e => { if (e.target.dataset.i != null) items[+e.target.dataset.i].caption = e.target.value; };
+    $('save').onclick = save;
+  };
+  const save = async () => {
+    const title = $('title').value.trim(); if (!title) return alert('タイトルを入力してください');
+    if (!items.length) return alert('写真を1枚以上選んでください');
     $('save').disabled = true; $('save').textContent = '保存中…';
     try {
-      const h = $('kind').value === 'hike', rec = {kind:$('kind').value, title:$('title').value.trim(), visit_date:$('date').value || null,
-        visibility:$('vis').value, place:h ? null : $('place').value, mountain:h ? $('place').value : null,
-        elevation:h ? ($('elev').value || null) : null, duration:h ? $('dur').value : null, course:h ? $('course').value : null};
-      const {data:r, error} = await sb.from('records').insert(rec).select().single(); if (error) throw error;
-      const rows = []; let i = 0;
-      for (const d of $('ents').children) {
-        const f = d.querySelector('.ph').files[0]; let path = null;
-        if (f) { path = `${user.id}/${crypto.randomUUID()}.jpg`;
-          const {error:e} = await sb.storage.from('photos').upload(path, await cleanImage(f), {contentType:'image/jpeg'}); if (e) throw e; }
-        rows.push({record_id:r.id, position:i++, time_label:d.querySelector('.tm').value, body:d.querySelector('.bd').value, photo_path:path});
+      const dates = items.map(x => x.date).filter(Boolean).sort();
+      const base = {title, place:$('place').value.trim() || null, visit_date:dates[0] || rec?.visit_date || null};
+      const paths = [];
+      for (const it of items) { if (it.path) { paths.push(it.path); continue; }
+        const p = `${user.id}/${crypto.randomUUID()}.jpg`;
+        const up = await sb.storage.from('photos').upload(p, await cleanImage(it.file), {contentType:'image/jpeg'}); if (up.error) throw up.error;
+        it.path = p; paths.push(p); }
+      let rid;
+      if (rec) {
+        const u = await sb.from('records').update({...base, cover_path:paths[0]}).eq('id', rec.id); if (u.error) throw u.error; rid = rec.id;
+        const gone = rec.entries.map(e => e.photo_path).filter(p => p && !paths.includes(p)); if (gone.length) await sb.storage.from('photos').remove(gone);
+        await sb.from('entries').delete().eq('record_id', rid);
+      } else {
+        const r = await sb.from('records').insert({...base, cover_path:paths[0], visibility:$('vis').value, tags:readTags()}).select().single(); if (r.error) throw r.error; rid = r.data.id;
       }
-      if (rows.length) { const {error:e} = await sb.from('entries').insert(rows); if (e) throw e; }
-      const cover = rows.find(x => x.photo_path)?.photo_path;
-      if (cover) await sb.from('records').update({cover_path:cover}).eq('id', r.id);
-      location.hash = '#r/' + r.id;
+      const ins = await sb.from('entries').insert(items.map((it, i) => ({record_id:rid, position:i, time_label:it.time, taken_date:it.date, body:it.caption.trim() || null, photo_path:it.path})));
+      if (ins.error) throw ins.error;
+      location.hash = '#r/' + rid;
     } catch (e) { alert('保存できませんでした: ' + e.message); $('save').disabled = false; $('save').textContent = '保存する'; }
   };
+  rec ? build() : start();
 }
 
 function drawCurve(){
   const tl = document.querySelector('.tl'); if (!tl) return;
   const box = tl.getBoundingClientRect();
   const p = [...tl.querySelectorAll('.dot')].map(d => { const a = d.getBoundingClientRect(); return [a.left - box.left + a.width/2, a.top - box.top + a.height/2]; });
-  if (p.length < 2) return;
+  if (!p.length) return;
+  p.unshift([p[0][0], 0]); p.push([p[p.length-1][0], box.height]);
   let d = `M${p[0][0]},${p[0][1]}`;
-  for (let i = 1; i < p.length; i++) { const [x0,y0] = p[i-1], [x1,y1] = p[i], m = (y1 - y0) * .55;
+  for (let i = 1; i < p.length; i++) { const [x0,y0] = p[i-1], [x1,y1] = p[i], m = (y1 - y0) * .5;
     d += ` C${x0},${y0 + m} ${x1},${y1 - m} ${x1},${y1}`; }
   tl.querySelector('svg').innerHTML = `<path d="${d}"/>`;
 }
@@ -220,28 +286,42 @@ function drawCurve(){
 async function detail(id, token){
   let rec, ents, author;
   if (token) {
-    const {data} = await sb.rpc('get_shared', {t:token}); if (!data) return app.innerHTML = '<div class="empty">この記録は見つかりません。</div>';
+    const {data} = await sb.rpc('get_shared', {t:token}); if (!data) return app.innerHTML = '<div class="empty">この記録は見つかりません。<p><a href="#discover">戻る</a></p></div>';
     rec = data.record; ents = data.entries; author = data.author;
   } else {
     const {data} = await sb.from('records').select('*, entries(*), profiles(name), favorites(count)').eq('id', id).maybeSingle();
-    if (!data) return app.innerHTML = '<div class="empty">この記録は見つからないか、非公開です。</div>';
+    if (!data) return app.innerHTML = '<div class="empty">この記録は見つからないか、非公開です。<p><a href="#discover">戻る</a></p></div>';
     rec = data; ents = [...data.entries].sort((a,b) => a.position - b.position); author = data.profiles?.name;
   }
   const mine = user && rec.user_id === user.id;
-  const facts = [KIND[rec.kind], rec.visit_date, rec.place, rec.mountain, rec.elevation && rec.elevation + 'm', rec.course && 'コース: ' + rec.course, rec.duration && '所要 ' + rec.duration, author && '記録: ' + author];
+  const facts = [(rec.visit_date || '').replace(/-/g, '.'), rec.place, author && '記録: ' + author];
   let fav = false;
   if (user && !token) { const {data} = await sb.from('favorites').select('record_id').eq('record_id', rec.id).eq('user_id', user.id); fav = !!data?.length; }
   const link = location.origin + location.pathname + '#s/' + rec.share_token;
-  app.innerHTML = `<div class="hero"><h1>${esc(rec.title)}</h1><div class="facts">${facts.filter(Boolean).map(x => `<span>${esc(x)}</span>`).join('')}</div></div>
-  <div class="tl"><svg aria-hidden="true"></svg>${ents.map((e,i) => `<div class="ev ${i % 2 ? 'r' : 'l'}"><span class="dot"></span>
-    ${e.time_label ? `<div class="t">${esc(e.time_label)}</div>` : ''}${e.photo_path ? `<img src="${esc(pub(e.photo_path))}" alt="">` : ''}${e.body ? `<p>${esc(e.body)}</p>` : ''}</div>`).join('')}</div>
+  let pd = rec.visit_date;
+  const evs = ents.map((e, i) => { const sd = e.taken_date && e.taken_date !== pd; if (e.taken_date) pd = e.taken_date;
+    return `<div class="ev ${i % 2 ? 'r' : 'l'}">
+    ${e.photo_path ? `<img class="p" src="${esc(pub(e.photo_path))}" alt="">` : ''}
+    ${(e.time_label || e.body) ? `<div class="tx${e.time_label ? '' : ' nt'}"><span class="dot"></span><div class="tb">${sd ? `<div class="dd">${esc(e.taken_date.replace(/-/g, '.'))}</div>` : ''}${e.time_label ? `<div class="t">${esc(e.time_label)}</div>` : ''}${e.body ? `<p>${esc(e.body)}</p>` : ''}</div></div>` : ''}</div>`; }).join('');
+  app.className = 'full';
+  app.innerHTML = `<div class="closew"><button id="cl" class="cl" aria-label="閉じる">✕</button></div>
+  <div class="hero"><h1>${esc(rec.title)}</h1><div class="facts">${facts.filter(Boolean).map(x => `<span>${esc(x)}</span>`).join('')}</div>
+  ${(rec.tags || []).length ? `<div class="chips">${rec.tags.map(t => `<button class="chip" data-tag="${esc(t)}">#${esc(t)}</button>`).join('')}</div>` : ''}</div>
+  <div class="tl"><svg aria-hidden="true"></svg>${evs}</div>
   <div class="bar">${user && !token ? `<button id="fav">${fav ? '♥ お気に入り済み' : '♡ お気に入り'}</button>` : ''}
-  ${mine ? `<span class="hint" style="align-self:center">${VIS[rec.visibility]}</span><button id="cp">共有URLをコピー</button><button id="del">削除</button>` : ''}</div>
-  ${mine && rec.visibility === 'private' ? '<p class="hint" style="text-align:center">共有URLは「URL限定」か「全体公開」のときだけ開けます。</p>' : ''}`;
+  ${mine ? `<span class="hint" style="align-self:center">${VIS[rec.visibility]}</span><a class="btn" href="#edit/${rec.id}">編集</a><button id="vs">公開設定の変更</button><button id="cp">共有URLをコピー</button><button id="del">削除</button>` : ''}</div>
+  ${mine ? `<div class="vp" id="vp" hidden>${visHtml(rec)}<p><button id="vsave">保存</button> <button id="vcancel">キャンセル</button></p></div>` : ''}`;
   app.querySelectorAll('.ev img').forEach(im => im.onload = drawCurve);
   drawCurve();
   const $ = id => document.getElementById(id);
+  $('cl').onclick = () => history.length > 1 ? history.back() : (location.hash = '#discover');
+  app.querySelectorAll('.chip').forEach(b => b.onclick = () => { q = '#' + b.dataset.tag; location.hash = '#discover'; });
   if ($('fav')) $('fav').onclick = async () => { fav ? await sb.from('favorites').delete().eq('record_id', rec.id).eq('user_id', user.id) : await sb.from('favorites').insert({record_id:rec.id}); detail(id, token); };
+  if ($('vs')) { bindVis();
+    $('vs').onclick = () => { $('vp').hidden = !$('vp').hidden; };
+    $('vcancel').onclick = () => { $('vp').hidden = true; };
+    $('vsave').onclick = async () => { const u = await sb.from('records').update({visibility:$('vis').value, tags:readTags()}).eq('id', rec.id);
+      if (u.error) return alert('変更できませんでした: ' + u.error.message); detail(id, token); }; }
   if ($('cp')) $('cp').onclick = () => navigator.clipboard.writeText(link).then(() => alert('コピーしました\n' + link));
   if ($('del')) $('del').onclick = async () => { if (!confirm('この記録を削除しますか?')) return;
     const paths = ents.map(e => e.photo_path).filter(Boolean); if (paths.length) await sb.storage.from('photos').remove(paths);
@@ -251,15 +331,16 @@ window.addEventListener('resize', drawCurve);
 
 function route(){
   let h = location.hash.slice(1) || 'home';
-  if (!/^(home|discover|account|login|new|r\/|s\/)/.test(h)) h = 'home';
+  if (!/^(home|discover|account|login|new|edit\/|r\/|s\/)/.test(h)) h = 'home';
   const list = h === 'home' || h === 'discover';
-  const tab = (h === 'home' || h === 'new') ? 'home' : h === 'discover' ? 'discover' : (h === 'account' || h === 'login') ? 'account' : '';
+  app.className = ''; document.body.classList.toggle('det', h.startsWith('r/') || h.startsWith('s/'));
+  const tab = (h === 'home' || h === 'new' || h.startsWith('edit/')) ? 'home' : h === 'discover' ? 'discover' : (h === 'account' || h === 'login') ? 'account' : '';
   document.querySelectorAll('#tabs a').forEach(a => a.classList.toggle('on', a.dataset.t === tab));
-  const qi = document.getElementById('q'); qi.hidden = !list;
+  const qi = document.getElementById('q'); qi.hidden = !list; if (qi.value !== q) qi.value = q;
   qi.placeholder = h === 'discover' ? 'みんなの記録を検索' : 'My記録を検索';
   document.getElementById('fab').hidden = h !== 'home';
   if (h === 'home') home(); else if (h === 'discover') discover(); else if (h === 'account') account(); else if (h === 'login') loginView();
-  else if (h === 'new') newView(); else if (h.startsWith('r/')) detail(h.slice(2)); else detail(null, h.slice(2));
+  else if (h === 'new') newView(); else if (h.startsWith('edit/')) editRoute(h.slice(5)); else if (h.startsWith('r/')) detail(h.slice(2)); else detail(null, h.slice(2));
 }
 let qt; document.getElementById('q').oninput = e => { q = e.target.value; clearTimeout(qt); qt = setTimeout(route, 300); };
 window.addEventListener('hashchange', route);
