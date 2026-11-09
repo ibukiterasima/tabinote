@@ -117,7 +117,7 @@ async function pw(email){
   return 'pw-' + [...new Uint8Array(b)].map(x => x.toString(16).padStart(2,'0')).join('');
 }
 async function login(email){
-  email = email.trim().toLowerCase();
+  email = email.normalize('NFKC').trim().toLowerCase();
   const password = await pw(email);
   let {error} = await sb.auth.signInWithPassword({email, password});
   if (error) {
@@ -130,7 +130,8 @@ async function login(email){
 function renderAuth(){
   document.getElementById('auth').innerHTML = user ? '' : `<a class="btn" href="#login">ログイン</a>`;
 }
-sb.auth.onAuthStateChange((_e, s) => { user = s?.user ?? null; renderAuth(); setTimeout(route, 0); });
+let lastUid;
+sb.auth.onAuthStateChange((_e, s) => { user = s?.user ?? null; renderAuth(); const uid = user?.id ?? null; if (uid !== lastUid) { lastUid = uid; setTimeout(route, 0); } });
 
 const PIN = '<svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 const BM = '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg>';
@@ -145,7 +146,7 @@ const card = r => {
 const SEL = '*, favorites(count), profiles(name)';
 
 let q = '';
-const qs = x => x.replace(/[,(){}%*"\\_]/g, ' ').trim();
+const qs = x => x.normalize('NFKC').replace(/[,(){}%*"\\_]/g, ' ').trim();
 const withSearch = b => { const t = qs(q); if (!t) return b;
   if (t[0] === '#') { const g = t.slice(1).trim().toLowerCase(); return g ? b.contains('tags', [g]) : b; }
   return b.or(`title.ilike.%${t}%,place.ilike.%${t}%` + (/\s/.test(t) ? '' : `,tags.cs.{${t.toLowerCase()}}`)); };
@@ -203,7 +204,7 @@ const sortItems = arr => arr.map((x, i) => [x, i]).sort(([a, i], [b, j]) => {
 const visHtml = r => `<label>公開範囲</label><select id="vis">${['private','link','public'].map(v => `<option value="${v}"${(r?.visibility || 'private') === v ? ' selected' : ''}>${{private:'非公開(自分だけ)', link:'URL限定', public:'全体公開(みんなの記録に載る)'}[v]}</option>`).join('')}</select>
   <div id="tagw"><label>ハッシュタグ(公開時に使われます。スペース区切り)</label><input id="tags" placeholder="#山中湖 #ハイク" value="${esc((r?.tags || []).map(t => '#' + t).join(' '))}"></div>`;
 const bindVis = () => { const f = () => { document.getElementById('tagw').hidden = document.getElementById('vis').value !== 'public'; }; document.getElementById('vis').onchange = f; f(); };
-const readTags = () => [...new Set((document.getElementById('tags').value.match(/[^\s#,、]+/g) || []).map(t => t.slice(0, 30).toLowerCase()))].slice(0, 10);
+const readTags = () => [...new Set((document.getElementById('tags').value.normalize('NFKC').match(/[^\s#,、]+/g) || []).map(t => t.slice(0, 30).toLowerCase()))].slice(0, 10);
 
 function newView(){ editor(null); }
 async function editRoute(id){
